@@ -12,6 +12,7 @@ app.get('/api/test', (req ,res) => {
 });
 
 app.post('/api/transaccion', async (req,res) => {
+    console.log(process.env.MONGO_URL);
     await mongoose.connect(process.env.MONGO_URL)
     const {nombre,descripcion,datetime,precio} = req.body;
     const transaccion = await Transaccion.create({nombre,descripcion,datetime,precio})
@@ -25,3 +26,6 @@ app.get('/api/transacciones', async (req,res) => {
 })
 
 app.listen({port: 4040})
+
+//Dirigirte a api (cd api)
+//Correr node index.js

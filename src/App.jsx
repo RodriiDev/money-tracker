@@ -8,19 +8,21 @@ function App() {
   const [descripcion,setDescripcion] = useState('');
   const [transacciones,setTransacciones] = useState([]);
 
+  console.log(import.meta.env.VITE_REACT_APP_API_URL+'/transacciones');
+
   useEffect(() => {
     obtenTransacciones().then(setTransacciones)
   }, []);
 
   async function obtenTransacciones(){
-    const url = import.meta.env.REACT_APP_API_URL+'/transacciones';
+    const url = import.meta.env.VITE_REACT_APP_API_URL+'/transacciones';
     const response = await fetch(url);
     return await response.json();
   }
 
   function añadirNuevaTransaccion(ev){
     ev.preventDefault();
-    const url = import.meta.env.REACT_APP_API_URL+'/transaccion'; //Se construye la URL a la que se enviará la solicitud
+    const url = import.meta.env.VITE_REACT_APP_API_URL+'/transaccion'; //Se construye la URL a la que se enviará la solicitud
     const precio = nombre.split(' ')[0];
     
     fetch(url, {
